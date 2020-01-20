@@ -35,7 +35,7 @@ public class Chat {
 		}
 	}
 	
-	public void bsm(String s) {
+	public static void bsm(String s) {
 		Bukkit.broadcastMessage(s);
 	}
 }
