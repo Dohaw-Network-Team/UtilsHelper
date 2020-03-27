@@ -35,6 +35,10 @@ public class Chat {
 		}
 	}
 	
+	public static void sendConsoleMessage(String s, String prefix) {
+		Bukkit.getConsoleSender().sendMessage(chat(prefix + " &r" + s));
+	}
+	
 	public static void bsm(String s) {
 		Bukkit.broadcastMessage(s);
 	}
