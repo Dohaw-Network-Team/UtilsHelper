@@ -14,31 +14,23 @@ import org.bukkit.configuration.file.FileConfiguration;
 public class LocationSerializer {
 
 	private FileConfiguration config;
-	private Location loc;
-	private String path;
 	
-	public LocationSerializer(FileConfiguration config, Location loc, String path) {
+	public LocationSerializer(FileConfiguration config) {
 		this.config = config;
-		this.loc = loc;
-		this.path = path;
 	}
-	
-	public LocationSerializer(FileConfiguration config, String path) {
-		this.config = config;
-		this.path = path;
+
+	public void storeLocation(String path, Location loc) {
+		config.set(path, "World: " + loc.getWorld().getName() + ";X: " + loc.getX() + ";Y: " + loc.getY() + ";Z: " + loc.getZ());
 	}
-	
-	public void storeLocation() {
-		config.set(path, "World: " + loc.getWorld() + ";X: " + loc.getX() + ";Y: " + loc.getY() + ";Z: " + loc.getZ());
-	}
-	
-	public Location toLocation() {
+
+	public Location toLocation(String path) {
 		
 		World w;
 		double x,y,z;
 		
 		String line = config.getString(path);
 		String[] arrLine = line.split(";");
+
 		w =  Bukkit.getWorld(arrLine[0].substring(7));
 		x = Double.parseDouble(arrLine[1].substring(3));
 		y = Double.parseDouble(arrLine[2].substring(3));
